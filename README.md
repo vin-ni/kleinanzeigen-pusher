@@ -17,6 +17,13 @@ No permissions, no tracking, nothing sent anywhere except to kleinanzeigen.de it
 - From the [Chrome Web Store](https://chromewebstore.google.com/detail/onhggcafbggfadbghoplpafonnmigehb), or
 - from source: `chrome://extensions` → enable *Developer mode* → *Load unpacked* → pick this folder.
 
+### Firefox (branch `firefox`)
+
+The same code runs in Firefox 140+. The only difference is `browser_specific_settings` in `manifest.json` (add-on id and the AMO data-collection declaration).
+
+- Try it: `about:debugging#/runtime/this-firefox` → *Load Temporary Add-on…* → pick `manifest.json`. It stays loaded until Firefox restarts. Or run `npx web-ext run --firefox=deved` to start Firefox Developer Edition with the add-on loaded.
+- Install it permanently: run `scripts/package-firefox.sh` (lints with `web-ext`, then builds `dist/kleinanzeigen-pusher-firefox-<version>.zip`) and upload the zip to [addons.mozilla.org](https://addons.mozilla.org/developers/). Release Firefox only installs signed add-ons, so choose *On your own* (unlisted) to get a signed `.xpi` for yourself, or list it publicly.
+
 ## Development
 
 Manifest V3, plain JavaScript, no build step.
